@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Fragrances - Premium Perfumes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Page Content Container */
+        .page-content {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Hero Sections for each page */
+        .page-hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+        }
+
+        .products-hero {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .contact-hero {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            color: white;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-custom {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn-custom:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* About Page Styles */
+        .story-section {
+            padding: 5rem 0;
+            background: var(--light-bg);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .team-card {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        /* Contact Page Styles */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+        }
+
+        .contact-info {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .map-container {
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        /* Filter Buttons for Products */
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            display: block;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Cart */
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 5rem;
+        }
+
+        .footer h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-date {
+                left: 30px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-spa"></i> Luxe Fragrances</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showPage('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('products')">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('about')">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('contact')">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-icon" href="#" onclick="toggleCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="page-hero home-hero">
+            <div class="container">
+                <div class="fade-in-up">
+                    <h1 class="hero-title">Luxe Fragrances</h1>
+                    <p class="hero-subtitle">Discover Your Signature Scent</p>
+                    <a href="#" class="cta-button" onclick="showPage('products')">Explore Collection</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Featured Collection</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-card">
+                            <div class="product-image" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Mystic Rose</h3>
+                                <p class="product-description">Elegant floral fragrance with notes of Bulgarian rose and
+                                    white musk</p>
+                                <div class="product-price">$129</div>
+                                <button class="btn btn-custom" onclick="addToCart('Mystic Rose', 129)">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-card">
+                            <div class="product-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Ocean Breeze</h3>
+                                <p class="product-description">Fresh aquatic scent with marine notes and citrus
+                                    undertones</p>
+                                <div class="product-price">$89</div>
+                                <button class="btn btn-custom" onclick="addToCart('Ocean Breeze', 89)">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="product-card">
+                            <div class="product-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Midnight Passion</h3>
+                                <p class="product-description">Intense and seductive with vanilla, amber, and black
+                                    pepper</p>
+                                <div class="product-price">$156</div>
+                                <button class="btn btn-custom" onclick="addToCart('Midnight Passion', 156)">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRODUCTS PAGE -->
+    <div id="products" class="page-content">
+        <!-- Products Hero -->
+        <section class="page-hero products-hero">
+            <div class="container">
+                <h1 class="hero-title">Our Products</h1>
+                <p class="hero-subtitle">Premium Fragrances for Every Occasion</p>
+            </div>
+        </section>
+
+        <!-- Product Filters -->
+        <section class="py-5">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                    <button class="filter-btn" onclick="filterProducts('men')">Men's</button>
+                    <button class="filter-btn" onclick="filterProducts('women')">Women's</button>
+                    <button class="filter-btn" onclick="filterProducts('unisex')">Unisex</button>
+                </div>
+
+                <!-- All Products Grid -->
+                <div class="product-grid" id="productGrid">
+                    <div class="product-card" data-category="women">
+                        <div class="product-image" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Mystic Rose</h3>
+                            <p class="product-description">Elegant floral fragrance with notes of Bulgarian rose,
+                                jasmine, and white musk. Perfect for romantic evenings and special occasions.</p>
+                            <div class="product-price">$129</div>
+                            <button class="btn btn-custom" onclick="addToCart('Mystic Rose', 129)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="unisex">
+                        <div class="product-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ocean Breeze</h3>
+                            <p class="product-description">Fresh aquatic scent with marine notes, citrus undertones, and
+                                sea salt. Refreshing and invigorating for daily wear.</p>
+                            <div class="product-price">$89</div>
+                            <button class="btn btn-custom" onclick="addToCart('Ocean Breeze', 89)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="women">
+                        <div class="product-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Midnight Passion</h3>
+                            <p class="product-description">Intense and seductive fragrance with vanilla, amber, black
+                                pepper, and exotic spices. Bold and mysterious.</p>
+                            <div class="product-price">$156</div>
+                            <button class="btn btn-custom" onclick="addToCart('Midnight Passion', 156)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="women">
+                        <div class="product-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Garden Symphony</h3>
+                            <p class="product-description">Fresh garden scent with jasmine, lily of the valley, green
+                                tea, and morning dew. Light and refreshing.</p>
+                            <div class="product-price">$98</div>
+                            <button class="btn btn-custom" onclick="addToCart('Garden Symphony', 98)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="men">
+                        <div class="product-image" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Golden Dawn</h3>
+                            <p class="product-description">Warm and masculine with sandalwood, bergamot, honey, and
+                                leather notes. Sophisticated and confident.</p>
+                            <div class="product-price">$142</div>
+                            <button class="btn btn-custom" onclick="addToCart('Golden Dawn', 142)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="women">
+                        <div class="product-image" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Velvet Dreams</h3>
+                            <p class="product-description">Luxurious blend of orchid, cashmere wood, silk musk, and
+                                precious gems. Opulent and elegant.</p>
+                            <div class="product-price">$178</div>
+                            <button class="btn btn-custom" onclick="addToCart('Velvet Dreams', 178)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="men">
+                        <div class="product-image" style="background: linear-gradient(135deg, #434343, #000000);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Black Knight</h3>
+                            <p class="product-description">Bold and powerful with cedar, tobacco, dark chocolate, and
+                                smoky incense. Strong and commanding.</p>
+                            <div class="product-price">$165</div>
+                            <button class="btn btn-custom" onclick="addToCart('Black Knight', 165)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="unisex">
+                        <div class="product-image" style="background: linear-gradient(135deg, #74b9ff, #0984e3);">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Arctic Breeze</h3>
+                            <p class="product-description">Cool and crisp with mint, eucalyptus, white tea, and fresh
+                                air. Clean and invigorating.</p>
+                            <div class="product-price">$112</div>
+                            <button class="btn btn-custom" onclick="addToCart('Arctic Breeze', 112)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="men">
+                        <div class="product-image" style="background: linear-gradient(135deg, #00b894, #00a085);">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Forest Trail</h3>
+                            <p class="product-description">Earthy and natural with pine, moss, oak, and morning mist.
+                                Adventurous and grounding.</p>
+                            <div class="product-price">$134</div>
+                            <button class="btn btn-custom" onclick="addToCart('Forest Trail', 134)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page-content">
+        <!-- About Hero -->
+        <section class="page-hero about-hero">
+            <div class="container">
+                <h1 class="hero-title">About Us</h1>
+                <p class="hero-subtitle">Crafting Luxury Fragrances Since 1985</p>
+            </div>
+        </section>
+
+        <!-- Our Story -->
+        <section class="story-section">
+            <div class="container">
+                <h2 class="section-title">Our Story</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3>A Legacy of Excellence</h3>
+                        <p class="lead">Founded in the heart of Paris, Luxe Fragrances has been creating exceptional
+                            perfumes for over three decades. Our passion for crafting unique scents has made us a leader
+                            in luxury fragrance industry.</p>
+                        <p>Each fragrance in our collection tells a story, evokes emotions, and creates lasting
+                            memories. We source the finest ingredients from around the world, working with master
+                            perfumers to create compositions that are both timeless and contemporary.</p>
+                        <p>Our commitment to quality, artistry, and innovation has earned us the trust of fragrance
+                            enthusiasts worldwide. From our boutique beginnings to becoming a globally recognized brand,
+                            we continue to pursue perfection in every bottle.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="text-center">
+                            <div
+                                style="width: 300px; height: 300px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 6rem; color: white;">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title">Our Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1985</div>
+                        <div class="timeline-content">
+                            <h4>The Beginning</h4>
+                            <p>Founded by master perfumer Antoine Dubois in a small Parisian atelier, with a vision to
+                                create extraordinary fragrances.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1992</div>
+                        <div class="timeline-content">
+                            <h4>First Breakthrough</h4>
+                            <p>Launch of "Mystic Rose" - our signature fragrance that became an instant classic and
+                                established our reputation.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2001</div>
+                        <div class="timeline-content">
+                            <h4>Global Expansion</h4>
+                            <p>Opened flagship stores in New York, London, and Tokyo, bringing our luxury fragrances to
+                                an international audience.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015</div>
+                        <div class="timeline-content">
+                            <h4>Innovation Award</h4>
+                            <p>Received the International Fragrance Excellence Award for our groundbreaking sustainable
+                                production methods.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-content">
+                            <h4>Digital Future</h4>
+                            <p>Launched our premium e-commerce platform, making luxury fragrances accessible worldwide
+                                with personalized recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Team -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card" data-aos="fade-up">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Antoine Dubois</h4>
+                        <p class="text-muted">Founder & Master Perfumer</p>
+                        <p>With over 40 years of experience, Antoine continues to lead our creative vision and craft our
+                            most exclusive fragrances.</p>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-avatar" style="background: #e74c3c;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Sophie Laurent</h4>
+                        <p class="text-muted">Head of Innovation</p>
+                        <p>Leading our research and development team, Sophie brings cutting-edge techniques to
+                            traditional perfumery.</p>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="team-avatar" style="background: #00b894;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Marco Rossi</h4>
+                        <p class="text-muted">Chief Fragrance Designer</p>
+                        <p>Marco's artistic vision and technical expertise have created some of our most beloved
+                            contemporary scents.</p>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="team-avatar" style="background: #a18cd1;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Emma Chen</h4>
+                        <p class="text-muted">Sustainability Director</p>
+                        <p>Emma ensures our commitment to environmental responsibility while maintaining the highest
+                            quality standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title">Our Values</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 text-center" data-aos="fade-up">
+                        <div
+                            style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Excellence</h4>
+                        <p>We never compromise on quality. Every fragrance is crafted with meticulous attention to
+                            detail and the finest ingredients.</p>
+                    </div>
+                    <div class="col-lg-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Sustainability</h4>
+                        <p>We're committed to protecting our planet through sustainable sourcing, eco-friendly
+                            packaging, and ethical practices.</p>
+                    </div>
+                    <div class="col-lg-4 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Passion</h4>
+                        <p>Our love for fragrance drives everything we do. We create scents that inspire emotions and
+                            create lasting memories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page-content">
+        <!-- Contact Hero -->
+        <section class="page-hero contact-hero">
+            <div class="container">
+                <h1 class="hero-title">Contact Us</h1>
+                <p class="hero-subtitle">We'd Love to Hear From You</p>
+            </div>
+        </section>
+
+        <!-- Contact Form & Info -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <h3 class="mb-4">Send us a Message</h3>
+                            <form id="contactForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Subject *</label>
+                                        <select class="form-control" id="subject" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="product">Product Information</option>
+                                            <option value="order">Order Support</option>
+                                            <option value="wholesale">Wholesale Opportunities</option>
+                                            <option value="press">Press & Media</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Message *</label>
+                                        <textarea class="form-control" id="message" rows="6"
+                                            placeholder="Tell us how we can help you..." required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="newsletter">
+                                            <label class="form-check-label" for="newsletter">
+                                                Subscribe to our newsletter for exclusive offers and updates
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-custom btn-lg">
+                                            <i class="fas fa-paper-plane"></i> Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="contact-info">
+                            <h3 class="mb-4">Get in Touch</h3>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h5>Visit Our Flagship Store</h5>
+                                    <p>123 Luxury Avenue<br>Fragrance District<br>Paris, France 75001</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h5>Call Us</h5>
+                                    <p>+33 1 42 36 70 00<br>Mon-Fri: 9:00 AM - 7:00 PM<br>Sat-Sun: 10:00 AM - 6:00 PM
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5>Email Us</h5>
+                                    <p>info@luxefragrances.com<br>support@luxefragrances.com<br>press@luxefragrances.com
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h5>Business Hours</h5>
+                                    <p>Monday - Friday: 9:00 AM - 7:00 PM<br>Saturday: 10:00 AM - 6:00 PM<br>Sunday:
+                                        10:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <h5 class="mb-3">Follow Us</h5>
+                                <div class="d-flex gap-3">
+                                    <a href="#"
+                                        style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none;">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                    <a href="#"
+                                        style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none;">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#"
+                                        style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none;">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#"
+                                        style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none;">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h3 class="text-center mb-4">Find Our Store</h3>
+                <div class="map-container">
+                    <div class="text-center">
+                        <i class="fas fa-map-marked-alt"
+                            style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h4>Interactive Map</h4>
+                        <p>123 Luxury Avenue, Fragrance District, Paris</p>
+                        <button class="btn btn-custom mt-2">Get Directions</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse1">
+                                        Do you offer international shipping?
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, we offer worldwide shipping to over 100 countries. Free shipping is
+                                        available on orders over $100. Delivery times vary by location, typically 3-7
+                                        business days.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse2">
+                                        What is your return policy?
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        We offer a 30-day return policy on unopened items. If you're not completely
+                                        satisfied, you can return your purchase for a full refund or exchange.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse3">
+                                        Do you offer fragrance consultations?
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes! Our fragrance experts offer personalized consultations both in-store and
+                                        virtually to help you find your perfect scent. Book an appointment through our
+                                        website.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse4">
+                                        Are your fragrances cruelty-free?
+                                    </button>
+                                </h2>
+                                <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Absolutely. All Luxe Fragrances products are cruelty-free and we never test on
+                                        animals. We're also committed to sustainable and ethical sourcing practices.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        <p class="text-center text-muted">Your cart is empty</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <strong>Total: $<span id="cartTotal">0</span></strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                    <button type="button" class="btn btn-custom" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-spa"></i> Luxe Fragrances</h5>
+                    <p>Discover your signature scent with our premium collection of luxury fragrances crafted for the
+                        discerning individual.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="showPage('products'); filterProducts('men')">Men's Fragrances</a></li>
+                        <li><a href="#" onclick="showPage('products'); filterProducts('women')">Women's Fragrances</a>
+                        </li>
+                        <li><a href="#" onclick="showPage('products'); filterProducts('unisex')">Unisex Scents</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 42 36 70 00</p>
+                    <p><i class="fas fa-envelope"></i> info@luxefragrances.com</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 Luxe Fragrances. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reinitialize AOS for new content
+            AOS.refresh();
+        }
+
+        // Product Filtering
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter products
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Cart functionality
+        let cart = [];
+        let cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            updateCartDisplay();
+            showNotification(`${name} added to cart!`);
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = totalPrice.toFixed(2);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-center text-muted">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>${item.price} x ${item.quantity}</small>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="changeQuantity('${item.name}', -1)">-</button>
+                            <span class="mx-2">${item.quantity}</span>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="changeQuantity('${item.name}', 1)">+</button>
+                            <button class="btn btn-sm btn-outline-danger ms-2" onclick="removeFromCart('${item.name}')">×</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function changeQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(name);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartDisplay();
+        }
+
+        function toggleCart() {
+            cartModal.show();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'warning');
+                return;
+            }
+
+            showNotification('Thank you for your purchase! Redirecting to payment...', 'success');
+            cart = [];
+            updateCartDisplay();
+            cartModal.hide();
+        }
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (firstName && lastName && email && subject && message) {
+                showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                this.reset();
+            } else {
+                showNotification('Please fill in all required fields.', 'warning');
+            }
+        });
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'info' ? 'primary' : type} position-fixed`;
+            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close float-end" onclick="this.parentElement.remove()"></button>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 4000);
+        }
+
+        // Initialize cart display
+        updateCartDisplay();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+
+</html>

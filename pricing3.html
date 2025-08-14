@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Dynamic Website Development - Professional Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .basic-gradient {
+            background: linear-gradient(135deg, #56ccf2, #2f80ed);
+        }
+
+        .standard-gradient {
+            background: linear-gradient(135deg, #834d9b, #d04ed6);
+        }
+
+        .premium-gradient {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+
+        .cta-gradient {
+            background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hover-scale {
+            transition: all 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-5px);
+        }
+
+        .glow {
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 210, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 210, 255, 0);
+            }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-white">
+    <!-- Hero Section -->
+    <div class="container-fluid mx-auto px-4 py-12 md:py-20">
+        <div class="text-center mb-16">
+            <div class="floating animate__animated animate__fadeIn">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 gradient-text">
+                   <span style="-webkit-text-fill-color: #e8f8fd;">🚀</span>
+                    Dynamic Website Development
+                </h1>
+                <p class="text-xl md:text-2xl font-medium opacity-90 max-w-3xl mx-auto">
+                    Professional, Responsive & Fast Loading Websites
+                </p>
+            </div>
+
+            <!-- Hero Card -->
+            <div class="glass-card p-8 md:p-10 max-w-5xl mx-auto mt-12 hover-scale glow">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="text-left flex-1">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Need a website?</h2>
+                        <p class="text-lg md:text-xl opacity-90 mb-6">Contact me today and get your dream website live!
+                        </p>
+                        <button
+                            class="cta-gradient text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 pulse">
+                            Get Started 🚀
+                        </button>
+                    </div>
+                    <div class="flex-1">
+                        <img src="roniii.jpg" alt="Website Preview"
+                            class="rounded-2xl shadow-2xl w-full h-auto border-4 border-white/20">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Plans -->
+        <div class="grid md:grid-cols-3 gap-8 mb-20 max-w-7xl mx-auto">
+            <!-- Basic Plan -->
+            <div class="glass-card p-6 rounded-2xl hover-scale">
+                <div class="basic-gradient rounded-xl p-6 mb-6 text-center">
+                    <h3 class="text-2xl font-bold text-white">Basic Plan</h3>
+                    <p class="text-3xl font-extrabold mt-2">₹20,000 – ₹25,000</p>
+                </div>
+                <p class="text-center font-medium mb-6 opacity-90">Best for: Small businesses, portfolios, or startups
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>4–5 Pages (Home, About, Services, Contact, etc.)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Mobile Responsive Design</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Contact Form with Email Notifications</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Basic Admin Panel to update content</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Basic SEO Setup (Title, Meta tags)</span>
+                    </li>
+                </ul>
+                <button
+                    class="w-full mt-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-medium transition-all duration-300">
+                    Choose Plan
+                </button>
+            </div>
+
+            <!-- Standard Plan (Featured) -->
+            <div class="glass-card p-6 rounded-2xl hover-scale transform scale-105 relative">
+                <div class="absolute -top-3 -right-3 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">
+                    POPULAR
+                </div>
+                <div class="standard-gradient rounded-xl p-6 mb-6 text-center">
+                    <h3 class="text-2xl font-bold text-white">Standard Plan</h3>
+                    <p class="text-3xl font-extrabold mt-2">₹35,000 – ₹45,000</p>
+                </div>
+                <p class="text-center font-medium mb-6 opacity-90">Best for: Growing businesses or service providers</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>7–10 Pages (Extra services, gallery, testimonials, etc.)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Mobile Responsive + Tablet Optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>SEO Optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Image/Video Gallery</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Admin Panel (add/edit/delete content easily)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Products & Sub-products Management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Blog or News Section</span>
+                    </li>
+                </ul>
+                <button
+                    class="w-full mt-8 py-3 standard-gradient hover:opacity-90 rounded-lg font-bold transition-all duration-300">
+                    Choose Plan
+                </button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="glass-card p-6 rounded-2xl hover-scale">
+                <div class="premium-gradient rounded-xl p-6 mb-6 text-center">
+                    <h3 class="text-2xl font-bold text-white">Premium Plan</h3>
+                    <p class="text-3xl font-extrabold mt-2">₹75,000+</p>
+                </div>
+                <p class="text-center font-medium mb-6 opacity-90">Best for: E-commerce, large companies, or custom web
+                    solutions</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Unlimited Pages</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Advanced Admin Panel (full control over all site content)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>E-commerce Functionality (Product listing, Cart, Checkout)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Payment Gateway Integration (Razorpay, PayU, etc.)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Products & Sub-products Management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span>Custom Features</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span >Mobile Responsive + Tablet Optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span >Security Setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span >Contact Form with Email Notifications</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span >Speed Optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="feature-icon text-xl mr-3 mt-1">✓</span>
+                        <span >Multi-language Support</span>
+                    </li>
+                </ul>
+                <button
+                    class="w-full mt-8 py-3 premium-gradient hover:opacity-90 rounded-lg font-bold transition-all duration-300">
+                    Choose Plan
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="glass-card max-w-2xl mx-auto p-8 md:p-10 text-center mb-20 hover-scale">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Contact Info</h2>
+            <div class="space-y-6 mb-8">
+                <div class="flex items-center justify-center gap-4">
+                    <div class="bg-white/10 p-3 rounded-full">
+                        <span class="text-2xl">📞</span>
+                    </div>
+                    <a href="tel:+919925435830" class="text-xl font-medium hover:opacity-80 transition-opacity">
+                        +91-9925435830
+                    </a>
+                </div>
+                <div class="flex items-center justify-center gap-4">
+                    <div class="bg-white/10 p-3 rounded-full">
+                        <span class="text-2xl">📧</span>
+                    </div>
+                    <a href="mailto:ronakprajapati3545@gmail.com"
+                        class="text-xl font-medium hover:opacity-80 transition-opacity">
+                        ronakprajapati3545@gmail.com
+                    </a>
+                </div>
+            </div>
+            <button
+                class="cta-gradient text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 mx-auto">
+                Get Started Today! 🚀
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center py-8 glass-card max-w-4xl mx-auto">
+            <p class="text-lg md:text-xl font-medium">
+                ✨ Professional • Responsive • Fast Loading • SEO Optimized ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add simple animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hover-scale');
+
+            elements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const x = e.pageX - el.offsetLeft;
+                    const y = e.pageY - el.offsetTop;
+
+                    el.style.transform = `perspective(1000px) rotateX(${(y - el.offsetHeight / 2) / 20}deg) rotateY(${(x - el.offsetWidth / 2) / 20}deg) translateY(-5px)`;
+                });
+
+                el.addEventListener('mouseout', () => {
+                    el.style.transform = 'translateY(-5px)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
